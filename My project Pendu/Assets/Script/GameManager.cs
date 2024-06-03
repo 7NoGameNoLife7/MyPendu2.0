@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Dictionarie dictionarie;
     public static GameManager instance;
     public Game currentGame;
-    public AudioClip audioTrue, audioFalse;
+    public AudioClip audioTrue, audioFalse, audioFond;
     private AudioSource audioSource;
     
 
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NewGame();
+        audioSource.PlayOneShot(audioFond);
         //DisplayGameOverMenu(false);
     }
 
