@@ -28,7 +28,6 @@ public class IHM : MonoBehaviour
     {
         get
         {
-            Debug.Log(GameManager.instance.currentGame);
             int index = GameManager.instance.currentGame.life - 1;
             index = Mathf.Clamp(index, 0, spriteArray.Length - 1);
             return index;
@@ -70,7 +69,7 @@ public class IHM : MonoBehaviour
         gameOverGo.SetActive(setActive);
     }
 
-    public void IsWon(bool setActive)
+    public void DisplayWin(bool setActive)
     {
         gameWinGo.SetActive(setActive);
     } 

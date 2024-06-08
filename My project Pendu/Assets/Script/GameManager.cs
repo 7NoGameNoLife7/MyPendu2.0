@@ -7,16 +7,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
-
-    // private bool win = false;
-
     public Dictionarie dictionarie;
     public static GameManager instance;
     public Game currentGame;
     public AudioClip audioTrue, audioFalse, audioFond;
     private AudioSource audioSource;
-    
+
 
     private void Awake()
     {
@@ -26,9 +22,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        NewGame();
-        audioSource.PlayOneShot(audioFond);
-        //DisplayGameOverMenu(false);
+        NewGame();                                                          // permet le lancement 
+        audioSource.PlayOneShot(audioFond);                                 // pour le son 
+        
     }
 
     public void NewGame()
@@ -39,33 +35,41 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void CheckLetter(string letter)
+    public void CheckLetter(string letter)                                      //verification des lettres 
     {
-        //currentGame.wordGuess.NoContains(letter);
-        currentGame.wordGuess.Contains(letter);
-        if (currentGame.wordGuess.Contains(letter))
+        bool isGoodMove=IsGoodMove(letter);
+
+        currentGame.AddPlayedLetter(letter);    
+
+        if (isGoodMove)
         {
-            Debug.Log(letter + " est contenue dans le mot");
+            
             if (currentGame.IsWon())
             {
-
+                IHM.Instance.DisplayWin(true);
             }
             audioSource.PlayOneShot(audioTrue);
 
         }
         else
         {
-            Debug.Log(letter + " n'est pas contenue dans le mot");
             audioSource.PlayOneShot(audioFalse);
             currentGame.RemoveLife(1);
-     
-
         }
 
-        if (!currentGame.playedLetters.Contains(letter))
-            currentGame.playedLetters.Add(letter);
         IHM.Instance.UpdateLetter();
         IHM.Instance.UpdateSprite();
         IHM.Instance.UpdatePlayLetter();
     }
+    bool IsGoodMove(string letter) 
+    {
+        if (!currentGame.WordToGuessContainsLetters(letter))
+            return false;
+
+        if (currentGame.IsLetterPlayed(letter))
+            return false;
+
+        return true;
+    }
 }
+

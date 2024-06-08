@@ -10,8 +10,8 @@ public class Game
         wordGuess = dico.GetRandWord();
         wordGuess = wordGuess.ToLower();
         playedLetters = new List<string>(); 
-        Debug.Log(wordGuess);
     }
+
     public List<string> playedLetters;
 
     
@@ -39,15 +39,25 @@ public class Game
 
     public bool WordToGuessContainsLetters(char letter)
     {
-        return GameManager.instance.currentGame.wordGuess.Contains(letter.ToString());
+        return wordGuess.Contains(letter.ToString());
     }
     public bool WordToGuessContainsLetters(string letter)
     {
-        return GameManager.instance.currentGame.wordGuess.Contains(letter.ToLower());
+        return wordGuess.Contains(letter.ToLower());
     }
 
     public bool IsLetterPlayed(char letter )
     {
-        return GameManager.instance.currentGame.playedLetters.Contains(letter.ToString());  
+        return playedLetters.Contains(letter.ToString());  
+    }
+    public bool IsLetterPlayed(string letter)
+    {
+        return playedLetters.Contains(letter);
+    }
+
+    public void AddPlayedLetter(string letter)
+    {
+        if (!IsLetterPlayed(letter))
+            playedLetters.Add(letter);
     }
 }
