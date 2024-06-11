@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuIHM : MonoBehaviour
 {
-    public void OnPlayButtonClick()
+    public void OnPlayButtonClick()                                         //Sert au lancement du jeux 
     {
         SceneManager.LoadScene("GameScene");
 
@@ -15,7 +15,7 @@ public class MainMenuIHM : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE                                                        // Gere la fermeture du jeux 
         Application.Quit();
 #endif
     }

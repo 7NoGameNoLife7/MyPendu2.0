@@ -28,7 +28,7 @@ public class IHM : MonoBehaviour
     {
         get
         {
-            int index = GameManager.instance.currentGame.life - 1;
+            int index = GameManager.instance.currentGame.life - 1;                              //Pour les different sprite en fonction de la perte de vie 
             index = Mathf.Clamp(index, 0, spriteArray.Length - 1);
             return index;
 
@@ -39,7 +39,7 @@ public class IHM : MonoBehaviour
     void Start()
 
     {
-        DisplayGameOverMenu(false);
+        DisplayGameOverMenu(false);                                             //Lance le panel en game over
 
         Debug.Log("nbre image " + lifes.Length);
     }
@@ -48,13 +48,13 @@ public class IHM : MonoBehaviour
     {
         Instance = this;
     }
-    public void UpdateSprite()
+    public void UpdateSprite()                                                      
     {
 
         imgPendu.sprite = spriteArray[SpriteIndex];
     }
 
-    public void OnRestartButtonClick()
+    public void OnRestartButtonClick()                                                      // Toute la partie controle des bouton 
     {
         SceneManager.LoadScene("GameScene");
 
@@ -64,17 +64,17 @@ public class IHM : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void DisplayGameOverMenu(bool setActive)
+    public void DisplayGameOverMenu(bool setActive)                                         //active le game over 
     {
         gameOverGo.SetActive(setActive);
     }
 
-    public void DisplayWin(bool setActive)
+    public void DisplayWin(bool setActive)                                                              //active le win
     {
         gameWinGo.SetActive(setActive);
     } 
 
-    public void UpdateLetter()
+    public void UpdateLetter()                                                                          //Permet lecriture des lettre sur le jeux  
     {
         string word = string.Empty;
         foreach (char c in GameManager.instance.currentGame.wordGuess)

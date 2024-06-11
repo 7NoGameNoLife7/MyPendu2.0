@@ -8,7 +8,7 @@ public class KeyBoardCtrl : MonoBehaviour
     public List<string> keys;
     void CreateButton()
     {
-        foreach (var key in keys) 
+        foreach (var key in keys)                                                           //permet la creation de mon clavier virtuelle 
         {
             GameObject go = Instantiate(buttonPrefab);
             go.transform.parent = transform;

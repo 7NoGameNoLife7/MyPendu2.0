@@ -7,7 +7,7 @@ public class Game
     public string wordGuess;
     public Game(Dictionarie dico)
     {
-        wordGuess = dico.GetRandWord();
+        wordGuess = dico.GetRandWord();                             // constructeur 
         wordGuess = wordGuess.ToLower();
         playedLetters = new List<string>(); 
     }
@@ -15,9 +15,9 @@ public class Game
     public List<string> playedLetters;
 
     
-    public int life = 7;
+    public int life = 7;                                                //Nombre de vie au star
 
-    public bool IsWon()
+    public bool IsWon()                                                 // Instancie mais les win
     {
         foreach (var letter in wordGuess)
         {
@@ -27,7 +27,7 @@ public class Game
     }
    
    
-    public void RemoveLife(int lostLife)
+    public void RemoveLife(int lostLife)                                   // fait perdre des vie en cas de faute 
     {
         life -= lostLife;
         
@@ -37,25 +37,25 @@ public class Game
         }
     }
 
-    public bool WordToGuessContainsLetters(char letter)
+    public bool WordToGuessContainsLetters(char letter)                    //surchage pour le char
     {
         return wordGuess.Contains(letter.ToString());
     }
-    public bool WordToGuessContainsLetters(string letter)
+    public bool WordToGuessContainsLetters(string letter)                   //sursarges pour le string
     {
         return wordGuess.Contains(letter.ToLower());
     }
 
-    public bool IsLetterPlayed(char letter )
+    public bool IsLetterPlayed(char letter)                                //surchage pour le char
     {
         return playedLetters.Contains(letter.ToString());  
     }
-    public bool IsLetterPlayed(string letter)
+    public bool IsLetterPlayed(string letter)                          //sursarges pour le string
     {
         return playedLetters.Contains(letter);
     }
 
-    public void AddPlayedLetter(string letter)
+    public void AddPlayedLetter(string letter)                              
     {
         if (!IsLetterPlayed(letter))
             playedLetters.Add(letter);
